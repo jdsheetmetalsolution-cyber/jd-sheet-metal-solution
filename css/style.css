@@ -33,15 +33,11 @@ nav{
     padding:18px 0;
 }
 
-.logo{
-    font-size:32px;
-    font-weight:bold;
+.logo img{
+    height:70px;
+    width:auto;
+    display:block;
 }
-
-.logo span{
-    color:#F2A900;
-}
-
 nav ul{
     display:flex;
     list-style:none;
