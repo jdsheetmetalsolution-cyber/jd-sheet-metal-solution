@@ -611,17 +611,14 @@ top:0;
     margin-left:30px;
     margin-right:0;
 }
-
-.top-time span{
+.top-time{
+    display:flex;
+    align-items:center;
+    gap:8px;
     color:#fff;
-}
+    font-size:15px;
+    font-weight:600;
 
-.top-time strong{
-    color:#F2A900;   /* Amber */
-    font-weight:700;
-}
-
-#live-time{
-    color:#fff;
-    font-weight:700;
+    margin-left:10px;
+    margin-right:40px;
 }
