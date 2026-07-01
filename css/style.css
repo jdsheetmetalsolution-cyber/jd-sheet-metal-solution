@@ -49,11 +49,12 @@ nav{
     height:70px;
 }
 
-nav ul{
+nav{
     display:flex;
-    list-style:none;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 0;
 }
-
 nav ul li{
     margin-left:30px;
 }
