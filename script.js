@@ -1,21 +1,18 @@
-function updateClock(){
+function updateIndianTime() {
 
-const india=new Date().toLocaleTimeString("en-IN",{
+    const options = {
+        timeZone: "Asia/Kolkata",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true
+    };
 
-timeZone:"Asia/Kolkata",
+    const time = new Date().toLocaleTimeString("en-IN", options);
 
-hour:"2-digit",
-
-minute:"2-digit",
-
-second:"2-digit"
-
-});
-
-document.getElementById("clock").innerHTML=india;
-
+    document.getElementById("live-time").textContent = time;
 }
 
-updateClock();
+updateIndianTime();
 
-setInterval(updateClock,1000);
+setInterval(updateIndianTime, 1000);
