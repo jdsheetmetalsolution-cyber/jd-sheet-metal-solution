@@ -575,3 +575,44 @@ RESPONSIVE
         0 0 18px #FFA500,
         0 0 35px #ff6600;
 }
+/* ===========================
+   Welding Spark Effect
+=========================== */
+
+.spark{
+    position:fixed;
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:#d9d9d9;
+    pointer-events:none;
+    z-index:99999;
+    box-shadow:
+        0 0 5px #ffffff,
+        0 0 10px #cfcfcf,
+        0 0 20px #bdbdbd;
+}
+
+.spark::after{
+    content:"";
+    position:absolute;
+    left:-55px;
+    top:2px;
+    width:55px;
+    height:2px;
+    background:linear-gradient(to left,
+        rgba(255,255,255,.9),
+        rgba(220,220,220,.7),
+        rgba(180,180,180,.2),
+        transparent);
+}
+
+@keyframes flicker{
+    0%{opacity:.9;}
+    50%{opacity:.4;}
+    100%{opacity:1;}
+}
+
+.spark{
+    animation:flicker .05s infinite;
+}
