@@ -43,16 +43,38 @@ nav{
     align-items:center;
     padding:15px 0;
 }
-.logo img{
-    height:70px;
+
+/* Logo */
+.logo{
+    margin-right:30px;
 }
 
-nav{
+/* Live Time */
+.top-time{
     display:flex;
-    justify-content:space-between;
     align-items:center;
-    padding:15px 0;
+    gap:8px;
+    color:#fff;
+    font-size:15px;
+    font-weight:600;
+    margin-right:40px;
 }
+
+.top-time strong{
+    color:#F2A900;
+}
+
+#live-time{
+    color:#fff;
+}
+
+/* Navigation Menu */
+nav ul{
+    display:flex;
+    list-style:none;
+    margin-left:auto;   /* Push menu to the right */
+}
+
 nav ul li{
     margin-left:30px;
 }
