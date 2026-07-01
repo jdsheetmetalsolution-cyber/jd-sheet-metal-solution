@@ -1,61 +1,58 @@
-const plane = document.getElementById("plane");
+<script>
 
-document.querySelectorAll(".nav-link").forEach(link => {
+document.querySelectorAll(".nav-link").forEach(link=>{
 
-    link.addEventListener("click", function(e){
+    link.addEventListener("click",function(e){
 
         e.preventDefault();
 
-        const target = document.querySelector(this.getAttribute("href"));
+        const target=document.querySelector(this.getAttribute("href"));
 
-        if(!target) return;
+        // create airplane
+        const plane=document.createElement("img");
+        plane.src="images/paper-plane.png";
+        plane.className="fly-plane";
+        document.body.appendChild(plane);
 
-        const start = this.getBoundingClientRect();
+        // start position (clicked menu)
+        const start=this.getBoundingClientRect();
 
-        const end = target.getBoundingClientRect();
+        let x=start.left+start.width/2;
+        let y=start.top+start.height/2;
 
-        const startX = start.left + start.width/2;
-        const startY = start.top + start.height/2;
+        plane.style.left=x+"px";
+        plane.style.top=y+"px";
 
-        const endX = window.innerWidth/2;
-        const endY = window.innerHeight/2;
+        // end position
+        const end=target.getBoundingClientRect();
 
-        plane.style.opacity="1";
-        plane.style.left=startX+"px";
-        plane.style.top=startY+"px";
+        const endX=window.innerWidth/2;
+        const endY=end.top+window.scrollY+120;
 
         let progress=0;
 
         function fly(){
 
-            progress+=0.02;
+            progress+=0.012;
 
             if(progress>=1){
 
-                plane.style.opacity="0";
+                plane.remove();
 
                 window.scrollTo({
-
                     top:target.offsetTop-70,
-
                     behavior:"smooth"
-
                 });
 
                 return;
             }
 
-            const curve=120;
+            // straight flying
+            const currentX=x+(endX-x)*progress;
+            const currentY=y+((endY-window.scrollY)-y)*progress;
 
-            const x=startX+(endX-startX)*progress;
-
-            const y=startY+(endY-startY)*progress-
-                    Math.sin(progress*Math.PI)*curve;
-
-            plane.style.left=x+"px";
-            plane.style.top=y+"px";
-
-            plane.style.transform=`rotate(${progress*720}deg)`;
+            plane.style.left=currentX+"px";
+            plane.style.top=currentY+"px";
 
             requestAnimationFrame(fly);
 
@@ -66,3 +63,5 @@ document.querySelectorAll(".nav-link").forEach(link => {
     });
 
 });
+
+</script>
