@@ -562,31 +562,17 @@ RESPONSIVE
     }
 }
 
-.nav-link{
-    position:relative;
-    display:inline-block;
-    transition:.5s;
-}
+/* Flying Plane */
 
-.rotate{
-    animation:rotate360 .9s ease;
-}
-
-@keyframes rotate360{
-    from{
-        transform:rotate(0deg);
-    }
-    to{
-        transform:rotate(360deg);
-    }
-}
-
-#trailCanvas{
+#plane{
     position:fixed;
-    top:0;
     left:0;
-    width:100%;
-    height:100%;
-    pointer-events:none;
+    top:0;
+    font-size:26px;
+    color:#d4b46a;
     z-index:99999;
+    pointer-events:none;
+    opacity:0;
+    transform:translate(-100px,-100px);
+    transition:none;
 }
