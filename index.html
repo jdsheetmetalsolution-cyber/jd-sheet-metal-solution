@@ -434,7 +434,83 @@ behavior:"smooth"
 });
 
 </script>
+<script>
 
+document.querySelectorAll(".nav-link").forEach(link=>{
+
+link.onclick=function(e){
+
+e.preventDefault();
+
+const target=document.querySelector(this.getAttribute("href"));
+
+const start=this.getBoundingClientRect();
+
+const end=target.getBoundingClientRect();
+
+const sx=start.left+start.width/2;
+const sy=start.top+start.height/2;
+
+const ex=window.innerWidth/2;
+const ey=end.top+window.scrollY+120;
+
+let frame=0;
+
+const interval=setInterval(()=>{
+
+const spark=document.createElement("div");
+spark.className="spark";
+document.body.appendChild(spark);
+
+const t=frame/120;
+
+const x=sx+(ex-sx)*t;
+const y=sy+((ey-sy)*t);
+
+spark.style.left=x+"px";
+spark.style.top=y+"px";
+
+spark.animate([
+{
+transform:"scale(1)",
+opacity:1
+},
+{
+transform:"scale(.2)",
+opacity:0
+}
+],{
+
+duration:700,
+fill:"forwards"
+
+});
+
+setTimeout(()=>spark.remove(),700);
+
+frame++;
+
+if(frame>120){
+
+clearInterval(interval);
+
+window.scrollTo({
+
+top:target.offsetTop-70,
+
+behavior:"smooth"
+
+});
+
+}
+
+},8);
+
+}
+
+});
+
+</script>
 </body>
 
 </html>
