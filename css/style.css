@@ -310,3 +310,147 @@ nav ul li{
 }
 
 }
+/* =========================================
+   ABOUT COMPANY SECTION
+========================================= */
+
+.company-about{
+    padding:90px 0;
+    background:#fff;
+}
+
+.company-about .container{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:60px;
+    flex-wrap:wrap;
+}
+
+.about-text{
+    flex:1;
+}
+
+.about-text h2{
+    font-size:48px;
+    color:#F2A900;
+    font-weight:800;
+    margin-bottom:25px;
+    line-height:1.2;
+    text-transform:uppercase;
+}
+
+.about-text p{
+    font-size:18px;
+    color:#444;
+    text-align:justify;
+    margin-bottom:20px;
+    line-height:1.9;
+}
+
+.about-image{
+    flex:1;
+    text-align:center;
+}
+
+.about-image img{
+    width:100%;
+    max-width:500px;
+}
+
+/* =========================================
+   WHY CHOOSE US
+========================================= */
+
+.why-us{
+    background:#f3f5f8;
+    padding:90px 0;
+}
+
+.why-title{
+    text-align:center;
+    margin-bottom:60px;
+}
+
+.why-title h2{
+    font-size:42px;
+    color:#2c2c2c;
+    margin-bottom:15px;
+}
+
+.why-title p{
+    max-width:900px;
+    margin:auto;
+    color:#555;
+    font-size:18px;
+    line-height:1.8;
+}
+
+.why-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:35px;
+}
+
+.why-box{
+    background:#fff;
+    text-align:center;
+    padding:35px 25px;
+    border-radius:15px;
+    transition:.4s;
+    box-shadow:0 5px 18px rgba(0,0,0,.08);
+}
+
+.why-box:hover{
+    transform:translateY(-10px);
+}
+
+.why-icon{
+    width:120px;
+    height:120px;
+    margin:auto;
+    border-radius:50%;
+    background:#fff;
+    border:12px solid #F2A900;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:50px;
+}
+
+.why-box h3{
+    margin-top:25px;
+    margin-bottom:15px;
+    color:#0D1B2A;
+    font-size:24px;
+}
+
+.why-box p{
+    color:#666;
+    line-height:1.7;
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media(max-width:768px){
+
+.company-about .container{
+    flex-direction:column;
+}
+
+.about-text h2{
+    font-size:34px;
+    text-align:center;
+}
+
+.about-text p{
+    text-align:left;
+}
+
+.why-title h2{
+    font-size:32px;
+}
+
+}
