@@ -30,42 +30,56 @@ img{
 
 /* ================= HEADER ================= */
 
+/* ================= HEADER ================= */
+
 header{
     position:sticky;
     top:0;
     z-index:999;
     background:#0D1B2A;
-    box-shadow:0 5px 15px rgba(0,0,0,.2);
+    box-shadow:0 3px 10px rgba(0,0,0,.15);
 }
 
 nav{
     display:flex;
     align-items:center;
-    padding:15px 0;
+    justify-content:space-between;
+    height:70px;
 }
 
-/* Logo */
 .logo{
-    margin-right:15px;
-}
-
-/* Live Time */
-.top-time{
     display:flex;
     align-items:center;
-    gap:8px;
+}
+
+.logo img{
+    height:48px;
+    width:auto;
+}
+
+nav ul{
+    display:flex;
+    align-items:center;
+    list-style:none;
+    gap:28px;
+    margin:0;
+    padding:0;
+}
+
+nav ul li{
+    margin:0;
+}
+
+nav ul li a{
     color:#fff;
+    text-decoration:none;
     font-size:15px;
     font-weight:600;
-    margin-right:40px;
+    transition:.3s;
 }
 
-.top-time strong{
+nav ul li a:hover{
     color:#F2A900;
-}
-
-#live-time{
-    color:#fff;
 }
 
 /* Navigation Menu */
@@ -657,132 +671,25 @@ top:0;
 .top-time{
     display:flex;
     align-items:center;
-    gap:8px;
+    gap:6px;
+    margin-left:20px;
+    margin-right:auto;
 
-    color:#fff;
-    font-size:15px;
+    font-size:14px;
     font-weight:600;
-
-    margin-left:30px;
-    margin-right:0;
+    white-space:nowrap;
 }
-.top-time{
-    display:flex;
-    align-items:center;
-    gap:8px;
+
+.top-time strong{
+    color:#F2A900;
+}
+
+.top-time span{
     color:#fff;
-    font-size:15px;
-    font-weight:600;
-
-    margin-left:10px;
-    margin-right:40px;
-}/*=========================
-LASER MACHINE ANIMATION
-=========================*/
-
-.laser-machine{
-    position:relative;
-    height:220px;
-    overflow:hidden;
-    background:#111;
 }
 
-.laser-machine img{
-    width:100%;
-    height:220px;
-    object-fit:cover;
-}
-
-/* Laser Sparks */
-
-.laser-machine .spark{
-
-    position:absolute;
-
-    width:4px;
-    height:50px;
-
-    background:linear-gradient(
-        to bottom,
-        #fff,
-        #ffd000,
-        orange,
-        transparent
-    );
-
-    left:63%;
-    top:95px;
-
-    opacity:0;
-
-    transform-origin:top;
-
-    animation:weld 1s linear infinite;
-
-}
-
-.s1{animation-delay:0s;}
-.s2{animation-delay:.2s;}
-.s3{animation-delay:.4s;}
-.s4{animation-delay:.6s;}
-.s5{animation-delay:.8s;}
-
-@keyframes weld{
-
-0%{
-opacity:1;
-transform:rotate(-15deg) translateY(0) scaleY(.2);
-}
-
-50%{
-opacity:1;
-transform:rotate(10deg) translateY(30px) scaleY(1);
-}
-
-100%{
-opacity:0;
-transform:rotate(25deg) translateY(70px) scaleY(1.4);
-}
-
-}
-
-/* Glowing Cutting Point */
-
-.laser-machine::after{
-
-content:"";
-
-position:absolute;
-
-left:63%;
-top:92px;
-
-width:18px;
-height:18px;
-
-background:#fff;
-
-border-radius:50%;
-
-box-shadow:
-0 0 10px #fff,
-0 0 25px yellow,
-0 0 50px orange;
-
-animation:flash .18s infinite alternate;
-
-}
-
-@keyframes flash{
-
-from{
-opacity:.4;
-transform:scale(.8);
-}
-
-to{
-opacity:1;
-transform:scale(1.3);
-}
-
+#live-time{
+    color:#fff;
+    font-weight:700;
+    min-width:95px;
 }
