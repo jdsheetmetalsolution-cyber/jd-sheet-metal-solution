@@ -40,11 +40,9 @@ header{
 
 nav{
     display:flex;
-    justify-content:space-between;
     align-items:center;
     padding:15px 0;
 }
-
 .logo img{
     height:70px;
 }
