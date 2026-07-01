@@ -613,9 +613,13 @@ top:0;
     margin-right:0;
 }
 
-.top-time span,
-.top-time strong{
+.top-time span{
     color:#fff;
+}
+
+.top-time strong{
+    color:#F2A900;   /* Amber */
+    font-weight:700;
 }
 
 #live-time{
