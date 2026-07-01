@@ -191,31 +191,64 @@ section{
 }
 
 /* ================= CONTACT ================= */
-
-#contact{
-    background:#0D1B2A;
-}
-
-#contact .title h2{
-    color:#F2A900;
-}
-
+/* CONTACT CARD */
 #contact .card{
     background:#fff;
     color:#222;
     padding:30px;
+    border-radius:12px;
+    border:2px solid transparent;
+    transition:all .5s ease;
+    position:relative;
+    overflow:hidden;
 }
 
-#contact .card h3{
+/* Shining Effect */
+#contact .card::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-120%;
+    width:70%;
+    height:100%;
+    background:linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,.7),
+        transparent
+    );
+    transition:.8s;
+}
+
+/* Hover */
+#contact .card:hover{
+
+    background:#F2A900;
+    border-color:#fff;
+
+    transform:
+        translateY(-12px)
+        scale(1.04);
+
+    box-shadow:
+        0 20px 45px rgba(242,169,0,.45);
+
+}
+
+/* Shine Animation */
+#contact .card:hover::before{
+    left:150%;
+}
+
+/* Text */
+#contact .card:hover h3,
+#contact .card:hover p,
+#contact .card:hover strong{
     color:#0D1B2A;
-    margin-bottom:15px;
-    border-bottom:3px solid #F2A900;
-    display:inline-block;
-    padding-bottom:5px;
 }
 
-#contact .card p{
-    line-height:1.8;
+#contact .card:hover h3{
+    border-bottom:3px solid #0D1B2A;
 }
 
 /* ================= MAP ================= */
