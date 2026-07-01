@@ -503,31 +503,24 @@ WELCOME SECTION
     color:#ffffff;
     margin-bottom:20px;
 }
-RESPONSIVE
-==============================*/
+@media (max-width:768px){
 
-@media(max-width:992px){
+    #welcome{
+        padding:80px 20px;
+        background-attachment:scroll;
+    }
 
-.welcome{
-    flex-direction:column-reverse;
-    text-align:center;
-}
+    .welcome-text h2{
+        font-size:34px;
+    }
 
-.welcome-text h2{
-    font-size:38px;
-}
+    .welcome-text h3{
+        font-size:36px;
+    }
 
-.welcome-text h3{
-    font-size:38px;
-}
-
-.welcome-text p{
-    text-align:left;
-    font-size:17px;
-}
-
-.welcome-image img{
-    max-width:320px;
-}
+    .welcome-text p{
+        font-size:16px;
+        text-align:left;
+    }
 
 }
