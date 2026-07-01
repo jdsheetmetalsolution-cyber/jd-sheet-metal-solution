@@ -521,6 +521,12 @@ WELCOME SECTION
 .welcome-image img:hover{
     transform:scale(1.03);
 }
+.welcome-image{
+    flex:1;
+    display:flex;
+    justify-content:flex-end;
+    margin-right:-80px;   /* Adjust this value */
+}
 
 /*=========================================
 RESPONSIVE
