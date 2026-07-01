@@ -454,3 +454,69 @@ nav ul li{
 }
 
 }
+/* ==========================================
+   WELCOME SECTION
+========================================== */
+
+#welcome{
+    background:#fff;
+    padding:90px 0;
+}
+
+.welcome{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:70px;
+    flex-wrap:wrap;
+}
+
+.welcome-text{
+    flex:1.4;
+}
+
+.welcome-text h2{
+    font-size:52px;
+    color:#F2A900;
+    font-weight:800;
+    line-height:1.2;
+    margin-bottom:25px;
+}
+
+.welcome-text p{
+    font-size:18px;
+    line-height:1.8;
+    text-align:justify;
+    margin-bottom:20px;
+}
+
+.welcome-image{
+    flex:1;
+    text-align:center;
+}
+
+.welcome-image img{
+    width:100%;
+    max-width:380px;
+}
+
+@media(max-width:900px){
+
+    .welcome{
+        flex-direction:column-reverse;
+        text-align:center;
+    }
+
+    .welcome-text h2{
+        font-size:36px;
+    }
+
+    .welcome-text p{
+        text-align:left;
+    }
+
+    .welcome-image img{
+        max-width:280px;
+    }
+
+}
