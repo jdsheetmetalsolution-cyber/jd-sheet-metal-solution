@@ -2,65 +2,73 @@
 
 document.querySelectorAll(".nav-link").forEach(link=>{
 
-    link.addEventListener("click",function(e){
+link.addEventListener("click",function(e){
 
-        e.preventDefault();
+e.preventDefault();
 
-        const target=document.querySelector(this.getAttribute("href"));
+const target=document.querySelector(this.getAttribute("href"));
 
-        // create airplane
-        const plane=document.createElement("img");
-        plane.src="images/paper-plane.png";
-        plane.className="fly-plane";
-        document.body.appendChild(plane);
+const plane=document.createElement("img");
 
-        // start position (clicked menu)
-        const start=this.getBoundingClientRect();
+plane.src="images/paper-plane.png";
 
-        let x=start.left+start.width/2;
-        let y=start.top+start.height/2;
+plane.className="fly-plane";
 
-        plane.style.left=x+"px";
-        plane.style.top=y+"px";
+document.body.appendChild(plane);
 
-        // end position
-        const end=target.getBoundingClientRect();
+const start=this.getBoundingClientRect();
 
-        const endX=window.innerWidth/2;
-        const endY=end.top+window.scrollY+120;
+const sx=start.left+start.width/2;
+const sy=start.top+start.height/2;
 
-        let progress=0;
+const end=target.getBoundingClientRect();
 
-        function fly(){
+const ex=window.innerWidth/2;
+const ey=end.top+120;
 
-            progress+=0.012;
+let t=0;
 
-            if(progress>=1){
+function animate(){
 
-                plane.remove();
+t+=0.015;
 
-                window.scrollTo({
-                    top:target.offsetTop-70,
-                    behavior:"smooth"
-                });
+if(t>=1){
 
-                return;
-            }
+plane.style.opacity=0;
 
-            // straight flying
-            const currentX=x+(endX-x)*progress;
-            const currentY=y+((endY-window.scrollY)-y)*progress;
+setTimeout(()=>{
 
-            plane.style.left=currentX+"px";
-            plane.style.top=currentY+"px";
+plane.remove();
 
-            requestAnimationFrame(fly);
+window.scrollTo({
+top:target.offsetTop-70,
+behavior:"smooth"
+});
 
-        }
+},150);
 
-        fly();
+return;
 
-    });
+}
+
+// Bezier Curve (Smooth Arc)
+
+const cx=(sx+ex)/2;
+const cy=Math.min(sy,ey)-180;
+
+const x=(1-t)*(1-t)*sx+2*(1-t)*t*cx+t*t*ex;
+const y=(1-t)*(1-t)*sy+2*(1-t)*t*cy+t*t*ey;
+
+plane.style.left=x+"px";
+plane.style.top=y+"px";
+
+requestAnimationFrame(animate);
+
+}
+
+animate();
+
+});
 
 });
 
