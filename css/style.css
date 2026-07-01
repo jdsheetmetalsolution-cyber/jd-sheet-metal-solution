@@ -561,3 +561,17 @@ RESPONSIVE
         max-width:320px;
     }
 }
+.spark{
+    position:absolute;
+    width:18px;
+    height:18px;
+    border-radius:50%;
+    background:#FFD700;
+    pointer-events:none;
+    z-index:99999;
+
+    box-shadow:
+        0 0 8px #FFD700,
+        0 0 18px #FFA500,
+        0 0 35px #ff6600;
+}
