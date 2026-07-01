@@ -1,171 +1,68 @@
-const canvas = document.getElementById("trailCanvas");
-const ctx = canvas.getContext("2d");
+const plane = document.getElementById("plane");
 
-function resize(){
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-}
+document.querySelectorAll(".nav-link").forEach(link => {
 
-resize();
+    link.addEventListener("click", function(e){
 
-window.addEventListener("resize", resize);
+        e.preventDefault();
 
-const particles=[];
+        const target = document.querySelector(this.getAttribute("href"));
 
-class Particle{
+        if(!target) return;
 
-    constructor(x,y){
+        const start = this.getBoundingClientRect();
 
-        this.x=x;
-        this.y=y;
+        const end = target.getBoundingClientRect();
 
-        this.vx=(Math.random()-0.5)*5;
-        this.vy=(Math.random()-0.5)*5;
+        const startX = start.left + start.width/2;
+        const startY = start.top + start.height/2;
 
-        this.life=60;
+        const endX = window.innerWidth/2;
+        const endY = window.innerHeight/2;
 
-        this.size=Math.random()*3+2;
+        plane.style.opacity="1";
+        plane.style.left=startX+"px";
+        plane.style.top=startY+"px";
 
-    }
+        let progress=0;
 
-    update(){
+        function fly(){
 
-        this.x+=this.vx;
+            progress+=0.02;
 
-        this.y+=this.vy;
+            if(progress>=1){
 
-        this.life--;
+                plane.style.opacity="0";
 
-        this.size*=0.97;
+                window.scrollTo({
 
-    }
+                    top:target.offsetTop-70,
 
-    draw(){
+                    behavior:"smooth"
 
-        ctx.beginPath();
+                });
 
-        ctx.fillStyle="rgba(230,230,230,"+(this.life/60)+")";
+                return;
+            }
 
-        ctx.shadowBlur=20;
+            const curve=120;
 
-        ctx.shadowColor="#ffffff";
+            const x=startX+(endX-startX)*progress;
 
-        ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
+            const y=startY+(endY-startY)*progress-
+                    Math.sin(progress*Math.PI)*curve;
 
-        ctx.fill();
+            plane.style.left=x+"px";
+            plane.style.top=y+"px";
 
-    }
+            plane.style.transform=`rotate(${progress*720}deg)`;
 
-}
+            requestAnimationFrame(fly);
 
-let comet=null;
+        }
 
-document.querySelectorAll(".nav-link").forEach(link=>{
+        fly();
 
-link.onclick=function(e){
-
-e.preventDefault();
-
-const target=document.querySelector(this.getAttribute("href"));
-
-const r=this.getBoundingClientRect();
-
-const startX=r.left+r.width/2;
-
-const startY=r.top+r.height/2;
-
-const end=target.getBoundingClientRect();
-
-const endX=window.innerWidth/2;
-
-const endY=end.top+120;
-
-comet={
-
-x:startX,
-
-y:startY,
-
-tx:endX,
-
-ty:endY,
-
-target
-
-};
-
-};
+    });
 
 });
-
-function animate(){
-
-requestAnimationFrame(animate);
-
-ctx.clearRect(0,0,canvas.width,canvas.height);
-
-if(comet){
-
-let dx=comet.tx-comet.x;
-
-let dy=comet.ty-comet.y;
-
-let dist=Math.sqrt(dx*dx+dy*dy);
-
-if(dist>8){
-
-comet.x+=dx*0.08;
-
-comet.y+=dy*0.08;
-
-for(let i=0;i<8;i++){
-
-particles.push(new Particle(comet.x,comet.y));
-
-}
-
-ctx.beginPath();
-
-ctx.fillStyle="#f8f4d7";
-
-ctx.shadowBlur=40;
-
-ctx.shadowColor="#fff";
-
-ctx.arc(comet.x,comet.y,7,0,Math.PI*2);
-
-ctx.fill();
-
-}else{
-
-window.scrollTo({
-
-top:comet.target.offsetTop-70,
-
-behavior:"smooth"
-
-});
-
-comet=null;
-
-}
-
-}
-
-for(let i=particles.length-1;i>=0;i--){
-
-particles[i].update();
-
-particles[i].draw();
-
-if(particles[i].life<=0){
-
-particles.splice(i,1);
-
-}
-
-}
-
-}
-
-animate();
