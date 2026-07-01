@@ -1,79 +1,171 @@
-document.addEventListener("DOMContentLoaded", () => {
+const canvas = document.getElementById("trailCanvas");
+const ctx = canvas.getContext("2d");
 
-const links = document.querySelectorAll(".nav-link");
+function resize(){
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
 
-links.forEach(link => {
+resize();
 
-    link.addEventListener("click", function(e){
+window.addEventListener("resize", resize);
 
-        e.preventDefault();
+const particles=[];
 
-        const targetID = this.getAttribute("href");
-        const target = document.querySelector(targetID);
+class Particle{
 
-        if(!target) return;
+    constructor(x,y){
 
-        // Rotation Animation
-        this.classList.add("rotate");
+        this.x=x;
+        this.y=y;
 
-        // Spark
-        createSpark(this);
+        this.vx=(Math.random()-0.5)*5;
+        this.vy=(Math.random()-0.5)*5;
 
-        setTimeout(()=>{
+        this.life=60;
 
-            target.scrollIntoView({
-                behavior:"smooth",
-                block:"start"
-            });
+        this.size=Math.random()*3+2;
 
-            this.classList.remove("rotate");
+    }
 
-        },900);
+    update(){
 
-    });
+        this.x+=this.vx;
 
-});
+        this.y+=this.vy;
 
-});
+        this.life--;
 
-function createSpark(element){
+        this.size*=0.97;
 
-const rect = element.getBoundingClientRect();
+    }
 
-const spark = document.createElement("div");
+    draw(){
 
-spark.className="spark";
+        ctx.beginPath();
 
-spark.style.left=(rect.left+rect.width/2)+"px";
-spark.style.top=(rect.top+rect.height/2)+"px";
+        ctx.fillStyle="rgba(230,230,230,"+(this.life/60)+")";
 
-document.body.appendChild(spark);
+        ctx.shadowBlur=20;
 
-let angle=0;
-let radius=5;
+        ctx.shadowColor="#ffffff";
 
-const animation=setInterval(()=>{
+        ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
 
-angle+=0.35;
-radius+=2;
+        ctx.fill();
 
-spark.style.left=
-(rect.left+rect.width/2+
-Math.cos(angle)*radius)+"px";
-
-spark.style.top=
-(rect.top+rect.height/2+
-Math.sin(angle)*radius)+"px";
-
-spark.style.opacity=1-radius/160;
-
-if(radius>150){
-
-clearInterval(animation);
-spark.remove();
+    }
 
 }
 
-},15);
+let comet=null;
+
+document.querySelectorAll(".nav-link").forEach(link=>{
+
+link.onclick=function(e){
+
+e.preventDefault();
+
+const target=document.querySelector(this.getAttribute("href"));
+
+const r=this.getBoundingClientRect();
+
+const startX=r.left+r.width/2;
+
+const startY=r.top+r.height/2;
+
+const end=target.getBoundingClientRect();
+
+const endX=window.innerWidth/2;
+
+const endY=end.top+120;
+
+comet={
+
+x:startX,
+
+y:startY,
+
+tx:endX,
+
+ty:endY,
+
+target
+
+};
+
+};
+
+});
+
+function animate(){
+
+requestAnimationFrame(animate);
+
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+if(comet){
+
+let dx=comet.tx-comet.x;
+
+let dy=comet.ty-comet.y;
+
+let dist=Math.sqrt(dx*dx+dy*dy);
+
+if(dist>8){
+
+comet.x+=dx*0.08;
+
+comet.y+=dy*0.08;
+
+for(let i=0;i<8;i++){
+
+particles.push(new Particle(comet.x,comet.y));
 
 }
+
+ctx.beginPath();
+
+ctx.fillStyle="#f8f4d7";
+
+ctx.shadowBlur=40;
+
+ctx.shadowColor="#fff";
+
+ctx.arc(comet.x,comet.y,7,0,Math.PI*2);
+
+ctx.fill();
+
+}else{
+
+window.scrollTo({
+
+top:comet.target.offsetTop-70,
+
+behavior:"smooth"
+
+});
+
+comet=null;
+
+}
+
+}
+
+for(let i=particles.length-1;i>=0;i--){
+
+particles[i].update();
+
+particles[i].draw();
+
+if(particles[i].life<=0){
+
+particles.splice(i,1);
+
+}
+
+}
+
+}
+
+animate();
