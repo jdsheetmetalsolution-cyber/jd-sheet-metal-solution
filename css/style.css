@@ -578,3 +578,174 @@ left:0;
 top:0;
 
 }
+.hero{
+    background:#07131f;
+    color:white;
+    padding:80px 0;
+}
+
+.hero-flex{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.worker-area{
+    width:45%;
+    position:relative;
+    height:420px;
+}
+
+.hero-content{
+    width:45%;
+}
+
+.clock{
+    position:absolute;
+    left:20px;
+    top:20px;
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    border:8px solid white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:28px;
+    color:#F2A900;
+    font-weight:bold;
+}
+
+.worker{
+    position:absolute;
+    left:130px;
+    bottom:0;
+}
+
+.head{
+    width:40px;
+    height:40px;
+    background:#222;
+    border-radius:50%;
+    margin-left:30px;
+    animation:headMove .8s infinite alternate;
+}
+
+.body{
+    width:60px;
+    height:120px;
+    background:#0d5aa7;
+    margin-top:5px;
+    position:relative;
+}
+
+.arm{
+    width:18px;
+    height:90px;
+    background:#0d5aa7;
+    position:absolute;
+    top:10px;
+}
+
+.arm-left{
+    left:-10px;
+    transform:rotate(20deg);
+}
+
+.arm-right{
+    right:-10px;
+    transform:rotate(-45deg);
+    animation:weld 0.3s infinite alternate;
+}
+
+.leg{
+    width:20px;
+    height:90px;
+    background:#0d5aa7;
+    position:absolute;
+    bottom:-90px;
+}
+
+.leg-left{
+    left:10px;
+    animation:legMove .6s infinite alternate;
+}
+
+.leg-right{
+    right:10px;
+}
+
+.torch{
+    position:absolute;
+    width:80px;
+    height:6px;
+    background:#999;
+    left:65px;
+    top:120px;
+    transform:rotate(35deg);
+}
+
+.sparks{
+    position:absolute;
+    left:140px;
+    top:160px;
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    background:white;
+    box-shadow:
+        0 0 15px white,
+        0 0 30px cyan,
+        0 0 50px #00ffff;
+    animation:spark .2s infinite;
+}
+
+@keyframes spark{
+
+0%{
+opacity:0;
+transform:scale(.3);
+}
+
+100%{
+opacity:1;
+transform:translate(20px,40px) scale(1.5);
+}
+
+}
+
+@keyframes weld{
+
+0%{
+transform:rotate(-43deg);
+}
+
+100%{
+transform:rotate(-48deg);
+}
+
+}
+
+@keyframes headMove{
+
+0%{
+transform:rotate(4deg);
+}
+
+100%{
+transform:rotate(-4deg);
+}
+
+}
+
+@keyframes legMove{
+
+0%{
+transform:rotate(3deg);
+}
+
+100%{
+transform:rotate(-3deg);
+}
+
+}
