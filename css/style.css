@@ -562,14 +562,12 @@ RESPONSIVE
     }
 }
 
-/* Flying Paper Airplane */
-
 .fly-plane{
     position:fixed;
-    width:70px;          /* Increase size */
+    width:70px;
     height:70px;
-    z-index:999999;
     pointer-events:none;
+    z-index:999999;
     object-fit:contain;
-    filter:drop-shadow(0 0 12px rgba(0,0,0,.35));
+    will-change:transform,left,top,opacity;
 }
