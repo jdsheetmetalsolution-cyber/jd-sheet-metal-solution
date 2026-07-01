@@ -561,13 +561,10 @@ RESPONSIVE
         max-width:320px;
     }
 }
-
 .fly-plane{
     position:fixed;
     width:70px;
     height:70px;
     pointer-events:none;
     z-index:999999;
-    object-fit:contain;
-    will-change:transform,left,top,opacity;
 }
